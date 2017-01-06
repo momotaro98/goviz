@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"strings"
 
 	"github.com/RobotsAndPencils/goviz/dotwriter"
 )
@@ -62,10 +61,9 @@ func (self *ImportPath) Label() string {
 	if !self.HasFiles() {
 		return self.ImportPath
 	}
-	return fmt.Sprintf("%s|%s|%s",
+	return fmt.Sprintf("%s|%s",
 		self.Files[0].Namespace,
-		self.ImportPath,
-		strings.Join(self.FileNames(), `\n`))
+		self.ImportPath)
 }
 
 func (self *ImportPath) Name() string { return self.ImportPath }

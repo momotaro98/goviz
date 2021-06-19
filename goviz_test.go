@@ -9,13 +9,13 @@ func TestOption(t *testing.T) {
 	os.Args = []string{
 		"goviz",
 		"-i",
-		"github.com/RobotsAndPencils/goviz",
+		"github.com/momotaro98/goviz",
 	}
 	option, err := getOptions()
 	if err != nil {
 		t.Errorf("option error %s", err)
 	}
-	if option.InputDir != "github.com/RobotsAndPencils/goviz" {
+	if option.InputDir != "github.com/momotaro98/goviz" {
 		t.Error("incorrect parse")
 	}
 }

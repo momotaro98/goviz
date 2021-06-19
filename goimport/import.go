@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/RobotsAndPencils/goviz/dotwriter"
+	"github.com/momotaro98/goviz/dotwriter"
 )
 
 type ImportPath struct {

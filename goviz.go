@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/RobotsAndPencils/goviz/dotwriter"
-	"github.com/RobotsAndPencils/goviz/goimport"
-	"github.com/RobotsAndPencils/goviz/metrics"
 	"github.com/jessevdk/go-flags"
+	"github.com/momotaro98/goviz/dotwriter"
+	"github.com/momotaro98/goviz/goimport"
+	"github.com/momotaro98/goviz/metrics"
 )
 
 type options struct {

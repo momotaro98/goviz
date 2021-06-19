@@ -2,7 +2,7 @@ goviz
 =====
 
 a visualization tool for golang project dependency
-![](https://raw.githubusercontent.com/hirokidaichi/goviz/master/images/own.png)
+![](./images/own.png)
 
 
 This tool is for helping source code reading. 
@@ -11,7 +11,13 @@ The dependency of the whole code can be visualized quickly.
 ## Installation
 
 ```
-go get github.com/hirokidaichi/goviz
+go get github.com/momotaro98/goviz
+```
+
+or
+
+```
+go install github.com/momotaro98/goviz
 ```
 
 and if not being installed [graphviz](http://www.graphviz.org), install it :
@@ -22,8 +28,20 @@ brew install graphviz
 
 ## Usage
 
+### When you want to see OSS Go library
+
+Before running following, you need to run `go get [the library]`
+
 ```
 goviz -i github.com/hashicorp/serf | dot -Tpng -o hoge.png
+```
+
+### When you want to see Go project not in $GOPATH/src
+
+Go to the project directory path which contains `go.mod` file
+
+```
+goviz -i your.private.com/team/project | dot -Tpng -o hoge.png
 ```
 
 ### Option
@@ -37,8 +55,6 @@ Application Options:
   -o, --output=  output file (STDOUT)
   -d, --depth=   max plot depth of the dependency tree (128)
   -f, --focus=   focus on the specific module
-  -s, --search=  top directory of searching
-  -l, --leaf     whether leaf nodes are plotted (false)
   -m, --metrics  display module metrics (false)
 
 Help Options:
@@ -56,7 +72,7 @@ exit status 1
 ```
 goviz -i github.com/mattn/anko | dot -Tpng -o anko.png
 ```
-![](https://raw.githubusercontent.com/hirokidaichi/goviz/master/images/anko.png)
+![](./images/anko.png)
 
 
 ### [serf](https://github.com/hashicorp/serf)
@@ -65,7 +81,7 @@ goviz -i github.com/mattn/anko | dot -Tpng -o anko.png
 ```
 goviz -i github.com/hashicorp/serf | dot -Tpng -o serf.png
 ```
-![](https://raw.githubusercontent.com/hirokidaichi/goviz/master/images/serf.png)
+![](./images/serf.png)
 
 
 ### [go-xslate](https://github.com/lestrrat/go-xslate)
@@ -74,7 +90,7 @@ goviz -i github.com/hashicorp/serf | dot -Tpng -o serf.png
 ```
 goviz -i github.com/lestrrat/go-xslate | dot -Tpng -o xslate.png
 ```
-![](https://raw.githubusercontent.com/hirokidaichi/goviz/master/images/xslate.png)
+![](./images/xslate.png)
 
 
 ### [vegeta](https://github.com/tsenart/vegeta)
@@ -83,52 +99,16 @@ goviz -i github.com/lestrrat/go-xslate | dot -Tpng -o xslate.png
 ```
 goviz -i github.com/tsenart/vegeta -l| dot -Tpng -o vegeta.png
 ```
-![](https://raw.githubusercontent.com/hirokidaichi/goviz/master/images/vegeta.png)
-
-
-### [packer](https://github.com/mitchellh/packer)
-
-
-```
-goviz -i github.com/mitchellh/packer --search SELF| dot -Tpng -o packer.png
-```
-![](https://raw.githubusercontent.com/hirokidaichi/goviz/master/images/packer.png)
-
-
-### [docker plot depth 1](https://github.com/dotcloud/docker/docker)
-
-
-```
-goviz -i github.com/dotcloud/docker/docker -s github.com/dotcloud/docker -d 1| dot -Tpng -o docker1.png
-```
-![](https://raw.githubusercontent.com/hirokidaichi/goviz/master/images/docker1.png)
+![](./images/vegeta.png)
 
 
 ### [docker plot depth 2](https://github.com/dotcloud/docker/docker)
 
 
 ```
-goviz -i github.com/dotcloud/docker/docker -s github.com/dotcloud/docker -d 2| dot -Tpng -o docker2.png
+goviz -i github.com/dotcloud/docker/docker  -d 2| dot -Tpng -o docker2.png
 ```
-![](https://raw.githubusercontent.com/hirokidaichi/goviz/master/images/docker2.png)
-
-
-### [docker plot depth 3](https://github.com/dotcloud/docker/docker)
-
-
-```
-goviz -i github.com/dotcloud/docker/docker -s github.com/dotcloud/docker -d 3| dot -Tpng -o docker3.png
-```
-![](https://raw.githubusercontent.com/hirokidaichi/goviz/master/images/docker3.png)
-
-
-### [docker&#39;s execdrivers](https://github.com/dotcloud/docker/runtime/execdriver/execdrivers/)
-
-
-```
-goviz -i github.com/dotcloud/docker/runtime/execdriver/execdrivers/ -s github.com/dotcloud/docker| dot -Tpng -o docker-execdrivers.png
-```
-![](https://raw.githubusercontent.com/hirokidaichi/goviz/master/images/docker-execdrivers.png)
+![](./images/docker2.png)
 
 
 ### docker's metrics
@@ -214,9 +194,6 @@ Inst:0.000 Ca(  5) Ce(  0)	github.com/dotcloud/docker/vendor/src/code.google.com
 
 MIT
 
-## Author
+## Original Author
 
-hirokidaichi [at] gmail.com
-
-
-
+[hirokidaishi](https://github.com/hirokidaichi)-san 

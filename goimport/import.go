@@ -26,6 +26,7 @@ func NewImportPath(importPath string, filter *ImportFilter) *ImportPath {
 func (self *ImportPath) Init(factory *ImportPathFactory, fileNames []string) {
 	sourceFiles := make([]*Source, len(fileNames))
 	for idx, fileName := range fileNames {
+		// NewSourceでimportのソースコードもfactory.Get(path)の再帰によるオブジェクト化する
 		source, err := NewSource(fileName, factory)
 		if err != nil {
 			panic(err)

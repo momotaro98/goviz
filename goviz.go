@@ -15,8 +15,6 @@ type options struct {
 	OutputFile string `short:"o" long:"output" default:"STDOUT" description:"output file"`
 	Depth      int    `short:"d" long:"depth" default:"128" description:"max plot depth of the dependency tree"`
 	Reversed   string `short:"f" long:"focus" description:"focus on the specific module"`
-	SeekPath   string `short:"s" long:"search" default:"" description:"top directory of searching"`
-	PlotLeaf   bool   `short:"l" long:"leaf" description:"whether leaf nodes are plotted"`
 	UseMetrics bool   `short:"m" long:"metrics" description:"display module metrics"`
 }
 
@@ -39,14 +37,15 @@ func errorf(format string, args ...interface{}) {
 }
 
 func process() int {
+	// cli 引数取得処理
 	options, err := getOptions()
 	if err != nil {
 		return 1
 	}
+
+	// ファイルオブジェクト化、importノード化
 	factory := goimport.ParseRelation(
 		options.InputDir,
-		options.SeekPath,
-		options.PlotLeaf,
 	)
 	if factory == nil {
 		errorf("inputdir does not exist.\n go get %s", options.InputDir)
@@ -61,19 +60,23 @@ func process() int {
 		errorf("-d or --depth should have positive int\n")
 		return 1
 	}
+
+	// 出力先オブジェクト生成
 	output := getOutputWriter(options.OutputFile)
 	if options.UseMetrics {
 		metrics_writer := metrics.New(output)
 		metrics_writer.Plot(pathToNode(factory.GetAll()))
 		return 0
 	}
-
+	// 出力処理
 	writer := dotwriter.New(output)
 	writer.MaxDepth = options.Depth
 	if options.Reversed == "" {
 		writer.PlotGraph(root)
 		return 0
 	}
+
+	// これ以降は指定モジュールがある場合の処理
 	writer.Reversed = true
 
 	rroot := factory.Get(options.Reversed)

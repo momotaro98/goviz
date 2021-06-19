@@ -106,7 +106,7 @@ func (p *ImportPath) FileNames() []string {
 }
 
 func (p *ImportPath) String() string {
-	return fmt.Sprintf("%s:\n%s", p.ImportPath, p.Files)
+	return fmt.Sprintf("%s:\n%+v", p.ImportPath, p.Files)
 }
 
 func fileExists(file string) bool {

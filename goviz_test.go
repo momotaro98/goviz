@@ -27,6 +27,6 @@ func TestOption2(t *testing.T) {
 		"gitdaichi/goviz",
 	}
 	if p := process(); p != 1 {
-		t.Error("exit status expect 1 ,but %d", p)
+		t.Errorf("exit status expect 1 ,but %d", p)
 	}
 }

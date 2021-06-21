@@ -17,7 +17,7 @@ go get github.com/momotaro98/goviz
 or
 
 ```
-go install github.com/momotaro98/goviz
+go install github.com/momotaro98/goviz@latest
 ```
 
 and if not being installed [graphviz](http://www.graphviz.org), install it :
